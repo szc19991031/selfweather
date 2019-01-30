@@ -18,11 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.wxc.coolweather.gson.Forecast;
-import com.example.wxc.coolweather.gson.Weather;
-import com.example.wxc.coolweather.service.AutoUpdateService;
-import com.example.wxc.coolweather.util.HttpUtil;
-import com.example.wxc.coolweather.util.Utility;
+import com.selfweather.android.gson.Forecast;
+import com.selfweather.android.gson.Weather;
+import com.selfweather.android.service.AutoUpdateService;
+import com.selfweather.android.util.HttpUtil;
+import com.selfweather.android.util.Utility;
 
 import java.io.IOException;
 
