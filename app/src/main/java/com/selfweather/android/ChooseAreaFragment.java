@@ -77,9 +77,9 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //列表的点击事件
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -178,19 +178,11 @@ public class ChooseAreaFragment extends Fragment {
             queryFromServer(address, "county");
         }
     }
-
+//从服务器上查询市县数据
     private void queryFromServer(String address, final String type) {
+        showProgressDialog();
         HttpUtil.sendOkHttpRequest(address, new Callback() {//发送请求
-            @Override
-            public void onFailure(Call call, IOException e) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        closeProgressDialog();
-                        Toast.makeText(getActivity(), "加载出了问题", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
+
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -220,9 +212,19 @@ public class ChooseAreaFragment extends Fragment {
                     });
                 }
             }
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        closeProgressDialog();
+                        Toast.makeText(getActivity(), "加载失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         });
     }
-
+//显示进度对话框
     private void showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(getActivity());
@@ -232,9 +234,8 @@ public class ChooseAreaFragment extends Fragment {
         }
         progressDialog.show();
     }
-
-    private void closeProgressDialog()
-    {
+//关闭进度对话框
+    private void closeProgressDialog() {
         if (progressDialog != null) {
             progressDialog.dismiss();
         }

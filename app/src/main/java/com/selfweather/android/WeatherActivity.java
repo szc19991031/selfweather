@@ -143,7 +143,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     //向服务器请求天气信息，成功则重新加载天气信息
     public void requestWeather(final String weatherId)  {
-        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=fcb7df172b6c4100afbfe96618632466";
+        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=8ff41702d2394556b5709b546b876ed6";
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
